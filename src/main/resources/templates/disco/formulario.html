@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Disco</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2 th:text="${disco.id == null} ? 'Nuevo Disco' : 'Editar Disco'"></h2>
+    <form th:action="@{/discos/guardar}" th:object="${disco}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Titulo:</label>
+        <input type="text" th:field="*{titulo}" required>
+
+        <label>Anio:</label>
+        <input type="number" th:field="*{anio}">
+
+        <label>Precio:</label>
+        <input type="number" step="0.01" th:field="*{precio}">
+
+        <label>Stock:</label>
+        <input type="number" th:field="*{stock}">
+
+        <label>Artista:</label>
+        <select name="artista">
+            <option value="">-- Seleccione --</option>
+            <option th:each="a : ${artistas}" th:value="${a.id}" th:text="${a.nombre}"
+                    th:selected="${disco.artista != null && disco.artista.id == a.id}"></option>
+        </select>
+
+        <label>Genero:</label>
+        <select name="genero">
+            <option value="">-- Seleccione --</option>
+            <option th:each="g : ${generos}" th:value="${g.id}" th:text="${g.nombre}"
+                    th:selected="${disco.genero != null && disco.genero.id == g.id}"></option>
+        </select>
+
+        <button class="btn" type="submit">Guardar</button>
+        <a class="btn" th:href="@{/discos}" style="background:#777;">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
