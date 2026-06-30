@@ -1,7 +1,5 @@
 -- =====================================================================
 --  Datos de ejemplo (opcional).
---  Para cargarlos automaticamente: en application.properties pon
---  spring.sql.init.mode=always (recomendado solo la primera vez).
 -- =====================================================================
 
 -- Generos

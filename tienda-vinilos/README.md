@@ -6,30 +6,22 @@ implementa **CRUD completo** sobre todas ellas, con validaciones y mensajes clar
 
 ## 1. Requisitos
 
-- **JDK 21** (recomendado). Nota: con JDK 26 Spring Boot 3.2.5 puede fallar al arrancar;
-  usa el JDK 21 para este proyecto desde `File > Project Structure > Project`.
-- **MySQL** instalado y en ejecucion.
+- **JDK 21** (recomendado).
 - IntelliJ IDEA.
 
 ## 2. Configurar la base de datos
 
-1. En MySQL crea la base de datos (o deja que se cree sola con la URL):
+1. En MySQL crear la base de datos
    ```sql
    CREATE DATABASE tiendadb;
    ```
 2. En `src/main/resources/application.properties` ajusta tu usuario y contrasena:
    ```
    spring.datasource.username=root
-   spring.datasource.password=TU_CONTRASENA
+   spring.datasource.password=contraseña mysql 
    ```
 3. Ejecuta `TiendaVinilosApplication`. Hibernate crea automaticamente las tablas.
-4. Abre el navegador en **http://localhost:8080/**
-
-> Datos de ejemplo: pon `spring.sql.init.mode=always` la primera vez para cargar `data.sql`,
-> luego regresalo a `never` para no duplicar registros.
->
-> Si no tienes MySQL, en `application.properties` hay un bloque comentado para usar **H2**
-> en memoria; solo comenta el bloque de MySQL y descomenta el de H2.
+4. Abrir el navegador en **http://localhost:8080/**
 
 ## 3. Modelo de datos y relaciones
 
@@ -72,4 +64,4 @@ resources/static/css -> Estilos
 
 ## 7. Repositorio GitHub
 
-Enlace al repositorio: _COLOCAR_AQUI_EL_ENLACE_
+Enlace al repositorio: https://github.com/Jhosu25/Taller1_LP3.git
