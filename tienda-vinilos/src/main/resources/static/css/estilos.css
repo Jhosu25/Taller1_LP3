@@ -1,0 +1,139 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #2c2c2c;
+    color: #fff;
+    padding: 16px 24px;
+}
+
+header h1 { margin: 0; font-size: 22px; }
+
+nav {
+    background-color: #444;
+    padding: 10px 24px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 18px;
+    font-size: 14px;
+}
+
+nav a:hover { text-decoration: underline; }
+
+.contenedor {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+h2 { color: #2c2c2c; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-top: 12px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+th { background-color: #2c2c2c; color: #fff; }
+
+tr:nth-child(even) { background-color: #f9f9f9; }
+
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: #2c7be5;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn:hover { background-color: #1a5fc0; }
+
+.btn-editar { background-color: #f0ad4e; }
+.btn-editar:hover { background-color: #d99632; }
+.btn-eliminar { background-color: #d9534f; }
+.btn-eliminar:hover { background-color: #c12e2a; }
+
+form label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button { margin-top: 16px; }
+
+.menu-tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.tarjeta {
+    flex: 1 1 200px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.tarjeta a { text-decoration: none; color: #2c7be5; font-weight: bold; }
+
+/* ===== Mensajes de confirmacion y error (Taller 2) ===== */
+.alerta {
+    padding: 12px 16px;
+    border-radius: 5px;
+    margin: 12px 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+.exito { background: #dff0d8; color: #3c763d; border: 1px solid #c3e6cb; }
+.error-msg { background: #f2dede; color: #a94442; border: 1px solid #ebccd1; }
+
+/* Mensaje de error de validacion bajo cada campo */
+.error {
+    display: block;
+    color: #a94442;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+form h3 {
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    color: #2c2c2c;
+    font-size: 15px;
+}
+
+form small { color: #777; font-size: 12px; }

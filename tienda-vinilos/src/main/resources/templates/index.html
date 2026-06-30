@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Vinilos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <h1>Tienda de Discos de Vinilo</h1>
+</header>
+<nav>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2>Menu principal</h2>
+    <p>Sistema de gestion de la tienda de discos de vinilo. Las entidades estan
+        relacionadas entre si</p>
+    <div class="menu-tarjetas">
+        <div class="tarjeta"><a th:href="@{/discos}">Gestionar Discos</a></div>
+        <div class="tarjeta"><a th:href="@{/artistas}">Gestionar Artistas</a></div>
+        <div class="tarjeta"><a th:href="@{/generos}">Gestionar Generos</a></div>
+        <div class="tarjeta"><a th:href="@{/clientes}">Gestionar Clientes</a></div>
+        <div class="tarjeta"><a th:href="@{/ventas}">Gestionar Ventas</a></div>
+    </div>
+</div>
+</body>
+</html>

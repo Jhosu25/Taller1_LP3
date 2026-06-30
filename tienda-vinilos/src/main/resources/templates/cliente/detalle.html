@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2 th:text="'Cliente: ' + ${cliente.nombre}"></h2>
+    <p><strong>Email:</strong> <span th:text="${cliente.email}"></span></p>
+    <p><strong>Telefono:</strong> <span th:text="${cliente.telefono}"></span></p>
+    <p><strong>Direccion:</strong>
+        <span th:if="${cliente.direccion != null}"
+              th:text="${cliente.direccion.calle + ', ' + cliente.direccion.ciudad}"></span>
+        <span th:if="${cliente.direccion == null}">-</span>
+    </p>
+
+    <table>
+        <thead><tr><th>ID</th><th>Fecha</th><th>Disco</th><th>Cantidad</th><th>Total</th></tr></thead>
+        <tbody>
+        <tr th:each="v : ${cliente.ventas}">
+            <td th:text="${v.id}"></td>
+            <td th:text="${v.fecha}"></td>
+            <td th:text="${v.disco != null ? v.disco.titulo : '-'}"></td>
+            <td th:text="${v.cantidad}"></td>
+            <td th:text="${v.total}"></td>
+        </tr>
+        <tr th:if="${cliente.ventas.isEmpty()}"><td colspan="5">Este cliente no tiene ventas.</td></tr>
+        </tbody>
+    </table>
+    <br>
+    <a class="btn" th:href="@{/clientes}" style="background:#777;">Volver</a>
+</div>
+</body>
+</html>

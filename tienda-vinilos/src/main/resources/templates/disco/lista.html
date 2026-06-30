@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Discos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2>Listado de Discos</h2>
+
+    <div th:if="${mensaje}" class="alerta exito" th:text="${mensaje}"></div>
+    <div th:if="${error}" class="alerta error-msg" th:text="${error}"></div>
+
+    <a class="btn" th:href="@{/discos/nuevo}">+ Nuevo Disco</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th><th>Titulo</th><th>Anio</th><th>Precio</th>
+            <th>Stock</th><th>Artista</th><th>Generos</th><th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="disco : ${discos}">
+            <td th:text="${disco.id}"></td>
+            <td th:text="${disco.titulo}"></td>
+            <td th:text="${disco.anio}"></td>
+            <td th:text="${disco.precio}"></td>
+            <td th:text="${disco.stock}"></td>
+            <td th:text="${disco.artista != null ? disco.artista.nombre : '-'}"></td>
+            <td>
+                <span th:if="${disco.generos.isEmpty()}">-</span>
+                <span th:each="g, it : ${disco.generos}"
+                      th:text="${g.nombre + (it.last ? '' : ', ')}"></span>
+            </td>
+            <td>
+                <a class="btn btn-editar" th:href="@{/discos/editar/{id}(id=${disco.id})}">Editar</a>
+                <a class="btn btn-eliminar" th:href="@{/discos/eliminar/{id}(id=${disco.id})}"
+                   onclick="return confirm('Eliminar este disco?');">Eliminar</a>
+            </td>
+        </tr>
+        <tr th:if="${discos.isEmpty()}">
+            <td colspan="8">No hay discos registrados.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Genero</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2 th:text="${genero.id == null} ? 'Nuevo Genero' : 'Editar Genero'"></h2>
+    <form th:action="@{/generos/guardar}" th:object="${genero}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}">
+        <span class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+
+        <label>Descripcion:</label>
+        <input type="text" th:field="*{descripcion}">
+
+        <button class="btn" type="submit">Guardar</button>
+        <a class="btn" th:href="@{/generos}" style="background:#777;">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

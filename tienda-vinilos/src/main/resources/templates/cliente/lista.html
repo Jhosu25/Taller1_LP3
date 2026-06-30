@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2>Listado de Clientes</h2>
+
+    <div th:if="${mensaje}" class="alerta exito" th:text="${mensaje}"></div>
+    <div th:if="${error}" class="alerta error-msg" th:text="${error}"></div>
+
+    <a class="btn" th:href="@{/clientes/nuevo}">+ Nuevo Cliente</a>
+    <table>
+        <thead><tr><th>ID</th><th>Nombre</th><th>Email</th><th>Telefono</th><th>Ciudad</th><th>Acciones</th></tr></thead>
+        <tbody>
+        <tr th:each="c : ${clientes}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.nombre}"></td>
+            <td th:text="${c.email}"></td>
+            <td th:text="${c.telefono}"></td>
+            <td th:text="${c.direccion != null ? c.direccion.ciudad : '-'}"></td>
+            <td>
+                <a class="btn" th:href="@{/clientes/ver/{id}(id=${c.id})}">Ver ventas</a>
+                <a class="btn btn-editar" th:href="@{/clientes/editar/{id}(id=${c.id})}">Editar</a>
+                <a class="btn btn-eliminar" th:href="@{/clientes/eliminar/{id}(id=${c.id})}" onclick="return confirm('Eliminar este cliente?');">Eliminar</a>
+            </td>
+        </tr>
+        <tr th:if="${clientes.isEmpty()}"><td colspan="6">No hay clientes registrados.</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

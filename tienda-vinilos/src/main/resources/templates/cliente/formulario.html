@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2 th:text="${cliente.id == null} ? 'Nuevo Cliente' : 'Editar Cliente'"></h2>
+    <form th:action="@{/clientes/guardar}" th:object="${cliente}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}">
+        <span class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+
+        <label>Email:</label>
+        <input type="text" th:field="*{email}">
+        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+        <label>Telefono:</label>
+        <input type="text" th:field="*{telefono}">
+        <span class="error" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
+
+        <h3>Direccion (relacion uno a uno)</h3>
+
+        <input type="hidden" th:field="*{direccion.id}">
+
+        <label>Calle:</label>
+        <input type="text" th:field="*{direccion.calle}">
+        <span class="error" th:if="${#fields.hasErrors('direccion.calle')}" th:errors="*{direccion.calle}"></span>
+
+        <label>Ciudad:</label>
+        <input type="text" th:field="*{direccion.ciudad}">
+        <span class="error" th:if="${#fields.hasErrors('direccion.ciudad')}" th:errors="*{direccion.ciudad}"></span>
+
+        <button class="btn" type="submit">Guardar</button>
+        <a class="btn" th:href="@{/clientes}" style="background:#777;">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

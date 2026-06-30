@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Artista</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2 th:text="'Artista: ' + ${artista.nombre}"></h2>
+    <p><strong>Pais:</strong> <span th:text="${artista.pais}"></span></p>
+
+    <table>
+        <thead><tr><th>ID</th><th>Titulo</th><th>Anio</th><th>Precio</th><th>Stock</th></tr></thead>
+        <tbody>
+        <tr th:each="d : ${artista.discos}">
+            <td th:text="${d.id}"></td>
+            <td th:text="${d.titulo}"></td>
+            <td th:text="${d.anio}"></td>
+            <td th:text="${d.precio}"></td>
+            <td th:text="${d.stock}"></td>
+        </tr>
+        <tr th:if="${artista.discos.isEmpty()}"><td colspan="5">Este artista no tiene discos.</td></tr>
+        </tbody>
+    </table>
+    <br>
+    <a class="btn" th:href="@{/artistas}" style="background:#777;">Volver</a>
+</div>
+</body>
+</html>

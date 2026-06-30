@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2>Listado de Generos</h2>
+
+    <div th:if="${mensaje}" class="alerta exito" th:text="${mensaje}"></div>
+    <div th:if="${error}" class="alerta error-msg" th:text="${error}"></div>
+
+    <a class="btn" th:href="@{/generos/nuevo}">+ Nuevo Genero</a>
+    <table>
+        <thead><tr><th>ID</th><th>Nombre</th><th>Descripcion</th><th>Acciones</th></tr></thead>
+        <tbody>
+        <tr th:each="g : ${generos}">
+            <td th:text="${g.id}"></td>
+            <td th:text="${g.nombre}"></td>
+            <td th:text="${g.descripcion}"></td>
+            <td>
+                <a class="btn btn-editar" th:href="@{/generos/editar/{id}(id=${g.id})}">Editar</a>
+                <a class="btn btn-eliminar" th:href="@{/generos/eliminar/{id}(id=${g.id})}" onclick="return confirm('Eliminar este genero?');">Eliminar</a>
+            </td>
+        </tr>
+        <tr th:if="${generos.isEmpty()}"><td colspan="4">No hay generos registrados.</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Artistas</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>Tienda de Discos de Vinilo</h1></header>
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/discos}">Discos</a>
+    <a th:href="@{/artistas}">Artistas</a>
+    <a th:href="@{/generos}">Generos</a>
+    <a th:href="@{/clientes}">Clientes</a>
+    <a th:href="@{/ventas}">Ventas</a>
+</nav>
+<div class="contenedor">
+    <h2>Listado de Artistas</h2>
+
+    <div th:if="${mensaje}" class="alerta exito" th:text="${mensaje}"></div>
+    <div th:if="${error}" class="alerta error-msg" th:text="${error}"></div>
+
+    <a class="btn" th:href="@{/artistas/nuevo}">+ Nuevo Artista</a>
+    <table>
+        <thead><tr><th>ID</th><th>Nombre</th><th>Pais</th><th>Acciones</th></tr></thead>
+        <tbody>
+        <tr th:each="a : ${artistas}">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.nombre}"></td>
+            <td th:text="${a.pais}"></td>
+            <td>
+                <a class="btn" th:href="@{/artistas/ver/{id}(id=${a.id})}">Ver discos</a>
+                <a class="btn btn-editar" th:href="@{/artistas/editar/{id}(id=${a.id})}">Editar</a>
+                <a class="btn btn-eliminar" th:href="@{/artistas/eliminar/{id}(id=${a.id})}" onclick="return confirm('Eliminar este artista?');">Eliminar</a>
+            </td>
+        </tr>
+        <tr th:if="${artistas.isEmpty()}"><td colspan="4">No hay artistas registrados.</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
